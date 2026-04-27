@@ -32,6 +32,9 @@ const formData = {
   situacion: '',
   problema: '',
   presupuesto: '',
+  website: '',
+  social: '',
+  additionalInfo: '',
   email: '',
   telefono: '',
   nombre: ''
@@ -44,7 +47,8 @@ const stepFields = {
   3: [], // Will be validated dynamically based on toggle
   4: ['situacion'],
   5: ['problema'],
-  6: ['presupuesto']
+  6: ['presupuesto'],
+  7: [] // Optional fields, always valid
 };
 
 // Initialize
@@ -104,7 +108,7 @@ function openEnvelope() {
 
 // Setup input listeners
 function setupInputListeners() {
-  const inputs = document.querySelectorAll('.letter__input, .letter__select, .letter__textarea');
+  const inputs = document.querySelectorAll('.letter__input, .letter__select, .letter__textarea, .letter__field-input');
   
   inputs.forEach(input => {
     input.addEventListener('input', (e) => {
@@ -120,7 +124,7 @@ function setupInputListeners() {
       updateNavigationButtons();
     });
 
-    if (input.classList.contains('letter__input') || input.classList.contains('letter__textarea')) {
+    if (input.classList.contains('letter__input') || input.classList.contains('letter__textarea') || input.classList.contains('letter__field-input')) {
       input.addEventListener('focus', (e) => {
         if (e.target.parentElement && e.target.parentElement.classList.contains('letter__input-wrapper')) {
           e.target.parentElement.style.borderBottomColor = 'var(--color-primary)';
@@ -227,6 +231,9 @@ function updateNavigationButtons() {
       } else {
         isStepComplete = formData.proceso && formData.proceso.trim() !== '';
       }
+    } else if (currentStep === 7) {
+      // Step 7 is optional, always valid
+      isStepComplete = true;
     } else {
       const currentStepFields = stepFields[currentStep];
       isStepComplete = currentStepFields.every(field => formData[field] && formData[field].trim() !== '');
@@ -245,8 +252,9 @@ function updateNavigationButtons() {
 
 // Close letter and show envelope back
 function closeLetter() {
-  // Hide progress
+  // Hide progress completely
   letterProgress.classList.remove('visible');
+  letterProgress.style.display = 'none';
   
   // Close letter with animation
   letter.classList.add('closing');
@@ -331,6 +339,18 @@ async function sendEmail() {
   formDataToSend.append('Situación', formData.situacion);
   formDataToSend.append('Problema', formData.problema);
   formDataToSend.append('Presupuesto', formData.presupuesto);
+  
+  // Optional fields
+  if (formData.website) {
+    formDataToSend.append('Página Web', formData.website);
+  }
+  if (formData.social) {
+    formDataToSend.append('Redes Sociales', formData.social);
+  }
+  if (formData.additionalInfo) {
+    formDataToSend.append('Información Adicional', formData.additionalInfo);
+  }
+  
   formDataToSend.append('Email', formData.email);
   formDataToSend.append('Teléfono', formData.telefono);
   formDataToSend.append('Nombre', formData.nombre);

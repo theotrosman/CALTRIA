@@ -3,14 +3,20 @@
 
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
 
+let scrambleEnabled = false;
+
+// Habilitar después de 3 segundos
+setTimeout(() => {
+  scrambleEnabled = true;
+}, 3000);
+
 function scrambleWord(span) {
   if (span._scrambling) return;
   span._scrambling = true;
 
   const original = span.dataset.original;
-  const totalFrames = 28; // más lento
+  const totalFrames = 28;
   let frame = 0;
-  let raf;
 
   function tick() {
     const progress = frame / totalFrames;
@@ -26,13 +32,16 @@ function scrambleWord(span) {
 
     frame++;
     if (frame <= totalFrames) {
-      raf = requestAnimationFrame(tick);
+      requestAnimationFrame(tick);
     } else {
       span.textContent = original;
+      span.style.color = '';
       span._scrambling = false;
     }
   }
 
+  // Color rosa durante el scramble
+  span.style.color = 'var(--color-primary)';
   tick();
 }
 
@@ -48,6 +57,7 @@ function wrapWords(el) {
       span.textContent = word;
       span.style.display = 'inline-block';
       span.style.whiteSpace = 'pre';
+      span.style.transition = 'color 0.3s ease';
       return span.outerHTML;
     })
     .join(' ');
@@ -60,7 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
     wrapWords(el);
 
     el.addEventListener('mousemove', (e) => {
-      // Encontrar el span más cercano al cursor
+      if (!scrambleEnabled) return;
+
       const spans = el.querySelectorAll('.scramble-word');
       let closest = null;
       let minDist = Infinity;
@@ -76,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // Solo scramble si el cursor está suficientemente cerca (dentro de ~80px)
       if (closest && minDist < 80) {
         scrambleWord(closest);
       }

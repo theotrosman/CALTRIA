@@ -21,15 +21,27 @@
   <div class="scroll-progress"></div>
 
   <!-- Navigation -->
-  <nav class="nav">
+  <nav class="nav" id="mainNav">
     <div class="container">
       <div class="nav__inner">
         <a href="#" class="nav__logo">Caltria</a>
-        <div class="nav__links">
-          <a href="#casos">Casos</a>
-          <a href="#servicios">Servicios</a>
-          <a href="#proceso">Proceso</a>
-          <a href="#contacto" class="nav__cta">Hablemos</a>
+        <div class="nav__links" id="navLinks">
+          <a href="#casos" class="nav__link" data-nav="casos">
+            <span class="nav__link-text">Casos</span>
+            <span class="nav__link-bg"></span>
+          </a>
+          <a href="#servicios" class="nav__link" data-nav="servicios">
+            <span class="nav__link-text">Servicios</span>
+            <span class="nav__link-bg"></span>
+          </a>
+          <a href="#proceso" class="nav__link" data-nav="proceso">
+            <span class="nav__link-text">Proceso</span>
+            <span class="nav__link-bg"></span>
+          </a>
+          <a href="#contacto" class="nav__link nav__link--cta" data-nav="contacto">
+            <span class="nav__link-text">Hablemos</span>
+            <span class="nav__link-bg"></span>
+          </a>
         </div>
       </div>
     </div>
@@ -76,8 +88,8 @@
             <div class="hero__stat-label">Menos tiempo perdido</div>
           </div>
           <div class="hero__stat">
-            <div class="hero__stat-number">3-6 meses</div>
-            <div class="hero__stat-label">Para recuperar inversión</div>
+            <div class="hero__stat-number">0 errores</div>
+            <div class="hero__stat-label">En tareas automatizadas</div>
           </div>
           <div class="hero__stat">
             <div class="hero__stat-number">24/7</div>
@@ -567,6 +579,7 @@
   <script src="js/scroll.js"></script>
   <script src="js/animations.js"></script>
   <script src="js/letter-form.js"></script>
+  <script src="js/venom-nav.js"></script>
 
 </body>
 </html>

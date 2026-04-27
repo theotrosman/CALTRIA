@@ -1,0 +1,93 @@
+/* ─── CUSTOM NEON CURSOR (Desktop Only) ──────────────────────── */
+
+@media (min-width: 1024px) {
+  /* Hide default cursor */
+  * {
+    cursor: none !important;
+  }
+
+  /* Custom cursor */
+  .custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease, border-color 0.3s ease;
+    mix-blend-mode: difference;
+    box-shadow: 0 0 10px var(--color-primary);
+  }
+
+  .custom-cursor::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--color-primary);
+  }
+
+  /* Cursor follower */
+  .cursor-follower {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 0, 110, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+    background: radial-gradient(circle, rgba(255, 0, 110, 0.1), transparent);
+  }
+
+  /* Hover states */
+  body.cursor-hover .custom-cursor {
+    transform: scale(1.5);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 20px var(--color-accent);
+  }
+
+  body.cursor-hover .cursor-follower {
+    width: 60px;
+    height: 60px;
+    border-color: rgba(251, 86, 7, 0.5);
+    background: radial-gradient(circle, rgba(251, 86, 7, 0.15), transparent);
+  }
+
+  /* Click state */
+  body.cursor-click .custom-cursor {
+    transform: scale(0.8);
+  }
+
+  body.cursor-click .cursor-follower {
+    width: 50px;
+    height: 50px;
+  }
+
+  /* Text selection state */
+  body.cursor-text .custom-cursor {
+    width: 2px;
+    height: 24px;
+    border-radius: 2px;
+    border: none;
+    background: var(--color-primary);
+  }
+
+  body.cursor-text .custom-cursor::before {
+    display: none;
+  }
+}
+
+/* Mobile - keep default cursor */
+@media (max-width: 1023px) {
+  .custom-cursor,
+  .cursor-follower {
+    display: none !important;
+  }
+}

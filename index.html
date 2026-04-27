@@ -9,6 +9,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/smooth-scroll.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/letter-form.css">
@@ -58,8 +59,7 @@
     <div class="container">
       <div class="hero__content">
         <div class="hero__badge">
-          <span class="hero__badge-dot"></span>
-          Automatización Inteligente
+      
         </div>
         
         <h1 class="hero__title">
@@ -88,8 +88,8 @@
             <div class="hero__stat-label">Menos tiempo perdido</div>
           </div>
           <div class="hero__stat">
-            <div class="hero__stat-number">0 errores</div>
-            <div class="hero__stat-label">En tareas automatizadas</div>
+            <div class="hero__stat-number">100%</div>
+            <div class="hero__stat-label">Sin error humano</div>
           </div>
           <div class="hero__stat">
             <div class="hero__stat-number">24/7</div>
@@ -142,18 +142,6 @@
           </div>
           <div class="result-card__tag">Consultoría</div>
         </div>
-      </div>
-      
-      <div class="results__cta">
-        <p class="results__cta-text">
-          ¿Querés automatizar un proceso de tu negocio? Contanos tu caso y te armamos una propuesta personalizada.
-        </p>
-        <a href="#contacto" class="btn btn--primary">
-          Hablar con nosotros
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="btn__icon">
-            <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
       </div>
     </div>
   </section>
@@ -276,6 +264,16 @@
 
   <!-- Contact Section - Letter Experience -->
   <section class="contact-section" id="contacto">
+    <div class="container">
+      <div class="section-header section-header--contact">
+        <span class="section-header__label">Contacto</span>
+        <h2 class="section-header__title">Contanos tu caso</h2>
+        <p class="section-header__subtitle">
+          Completá la carta con la información de tu negocio y te respondemos en 24 horas con una propuesta inicial.
+        </p>
+      </div>
+    </div>
+    
     <div class="letter-scene">
       <!-- Progress Indicator -->
       <div class="letter-progress" id="letterProgress">
@@ -285,7 +283,10 @@
       <!-- Envelope -->
       <div class="envelope" id="envelope">
         <div class="envelope__flap"></div>
-        <div class="envelope__body"></div>
+        <div class="envelope__body">
+          <!-- Paper peeking out -->
+          <div class="envelope__paper-peek"></div>
+        </div>
         
         <!-- Envelope Back (for final contact info) -->
         <div class="envelope__back" id="envelopeBack">
@@ -351,7 +352,7 @@
               </p>
             </div>
             
-            <!-- Step 2: Team Size -->
+            <!-- Step 2: Team Size & Location -->
             <div class="letter__step" data-step="2">
               <p class="letter__paragraph">
                 Hoy nuestro equipo de 
@@ -365,7 +366,10 @@
                     <option value="más de 200 personas">más de 200 personas</option>
                   </select>
                 </span>
-                personas está buscando mejorar nuestros procesos.
+                personas está buscando mejorar nuestros procesos. Estamos ubicados en 
+                <span class="letter__input-wrapper letter__input-wrapper--wide">
+                  <input type="text" class="letter__input letter__input--wide" id="location" placeholder="país o provincia" data-field="ubicacion" />
+                </span>.
               </p>
             </div>
             
@@ -447,33 +451,23 @@
               </p>
             </div>
             
-            <!-- Step 7: Additional Info -->
+            <!-- Step 7: Additional Info & Meeting Preference -->
             <div class="letter__step" data-step="7">
               <p class="letter__paragraph">
-                Información adicional que puede ser útil:
+                Para la primera reunión, preferimos que sea 
+                <span class="letter__input-wrapper">
+                  <select class="letter__select" id="meetingType" data-field="tipoReunion">
+                    <option value="">tipo de reunión</option>
+                    <option value="presencial">presencial</option>
+                    <option value="online">online</option>
+                    <option value="sin preferencia">sin preferencia</option>
+                  </select>
+                </span>.
               </p>
               
-              <div class="letter__field-group">
-                <label class="letter__field-label">Página web (opcional)</label>
-                <input 
-                  type="url" 
-                  class="letter__field-input" 
-                  id="website" 
-                  placeholder="https://tuempresa.com" 
-                  data-field="website" 
-                />
-              </div>
-              
-              <div class="letter__field-group">
-                <label class="letter__field-label">LinkedIn o redes sociales (opcional)</label>
-                <input 
-                  type="text" 
-                  class="letter__field-input" 
-                  id="social" 
-                  placeholder="LinkedIn, Instagram, etc." 
-                  data-field="social" 
-                />
-              </div>
+              <p class="letter__paragraph" style="margin-top: var(--space-6);">
+                Información adicional que puede ser útil:
+              </p>
               
               <div class="letter__field-group">
                 <label class="letter__field-label">Documentos o información relevante (opcional)</label>
@@ -543,34 +537,72 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer__content">
+      <div class="footer__main">
         <div class="footer__brand">
-          <div class="footer__brand-name">Caltria</div>
-          <p class="footer__brand-desc">
-            Automatización de procesos para empresas
+          <div class="footer__brand-logo">Caltria</div>
+          <p class="footer__brand-tagline">
+            Automatización de procesos para empresas que quieren crecer sin perder tiempo en tareas manuales.
           </p>
+          <div class="footer__social">
+            <a href="mailto:caltriasupport@gmail.com" class="footer__social-link" aria-label="Email">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </a>
+          </div>
         </div>
         
-        <div class="footer__founders">
-          <div class="footer__founders-title">Fundadores</div>
-          <a href="https://www.linkedin.com/in/theotrosman/" target="_blank" rel="noopener noreferrer" class="footer__founder-link">
-            Theo Trosman
-          </a>
-          <a href="https://www.linkedin.com/in/sebastián-calviño-99073b302/" target="_blank" rel="noopener noreferrer" class="footer__founder-link">
-            Sebastián Calviño
-          </a>
-        </div>
-        
-        <div class="footer__contact">
-          <div class="footer__contact-title">Contacto</div>
-          <a href="mailto:caltriasupport@gmail.com" class="footer__contact-link">
-            caltriasupport@gmail.com
-          </a>
+        <div class="footer__links-group">
+          <div class="footer__links-column">
+            <h4 class="footer__links-title">Navegación</h4>
+            <a href="#casos" class="footer__link">Casos de éxito</a>
+            <a href="#servicios" class="footer__link">Servicios</a>
+            <a href="#proceso" class="footer__link">Proceso</a>
+            <a href="#contacto" class="footer__link">Contacto</a>
+          </div>
+          
+          <div class="footer__links-column">
+            <h4 class="footer__links-title">Fundadores</h4>
+            <a href="https://www.linkedin.com/in/theotrosman/" target="_blank" rel="noopener noreferrer" class="footer__link footer__link--external">
+              Theo Trosman
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/sebastián-calviño-99073b302/" target="_blank" rel="noopener noreferrer" class="footer__link footer__link--external">
+              Sebastián Calviño
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </div>
+          
+          <div class="footer__links-column">
+            <h4 class="footer__links-title">Contacto</h4>
+            <a href="mailto:caltriasupport@gmail.com" class="footer__link">
+              caltriasupport@gmail.com
+            </a>
+            <a href="#contacto" class="footer__link footer__link--cta">
+              Hablar con nosotros →
+            </a>
+          </div>
         </div>
       </div>
       
       <div class="footer__bottom">
-        <div>2024 Caltria</div>
+        <div class="footer__bottom-left">
+          <span>© 2024 Caltria</span>
+          <span class="footer__separator">•</span>
+          <span>Automatización de procesos</span>
+        </div>
+        <div class="footer__bottom-right">
+          <span>Hecho con dedicación en Argentina</span>
+        </div>
       </div>
     </div>
   </footer>

@@ -28,12 +28,12 @@ const formData = {
   empresa: '',
   industria: '',
   tamaño: '',
+  ubicacion: '',
   proceso: '',
   situacion: '',
   problema: '',
   presupuesto: '',
-  website: '',
-  social: '',
+  tipoReunion: '',
   additionalInfo: '',
   email: '',
   telefono: '',
@@ -43,12 +43,12 @@ const formData = {
 // Step field mapping
 const stepFields = {
   1: ['empresa', 'industria'],
-  2: ['tamaño'],
+  2: ['tamaño', 'ubicacion'],
   3: [], // Will be validated dynamically based on toggle
   4: ['situacion'],
   5: ['problema'],
   6: ['presupuesto'],
-  7: [] // Optional fields, always valid
+  7: ['tipoReunion'] // Meeting type is required
 };
 
 // Initialize
@@ -97,13 +97,25 @@ function openEnvelope() {
   
   envelope.classList.add('opening');
   
-  // Wait for envelope animation to complete before showing letter
+  // La carta empieza a salir cuando la solapa está a mitad de camino
   setTimeout(() => {
     letter.classList.add('visible');
-    setTimeout(() => {
-      letterProgress.classList.add('visible');
-    }, 800);
-  }, 1500);
+  }, 1000);
+  
+  // Cambiar z-index de la carta para que pase por encima del sobre
+  setTimeout(() => {
+    letter.style.zIndex = '5';
+  }, 1800);
+  
+  // Ocultar el sobre después de que la carta salió completamente
+  setTimeout(() => {
+    envelope.classList.add('hiding');
+  }, 3500);
+  
+  // Show progress indicator after letter is fully visible and envelope is hidden
+  setTimeout(() => {
+    letterProgress.classList.add('visible');
+  }, 4200);
 }
 
 // Setup input listeners
@@ -199,7 +211,7 @@ function goToStep(step) {
     
     updateProgress();
     updateNavigationButtons();
-  }, 300);
+  }, 350);
 }
 
 // Update progress indicator
@@ -256,24 +268,37 @@ function closeLetter() {
   letterProgress.classList.remove('visible');
   letterProgress.style.display = 'none';
   
-  // Close letter with animation
-  letter.classList.add('closing');
+  // Mostrar el sobre inmediatamente (antes de que la carta empiece a entrar)
+  envelope.classList.remove('hiding');
+  envelope.style.opacity = '1';
+  envelope.style.transform = 'translateY(0) scale(1)';
+  envelope.style.filter = 'blur(0px)';
+  envelope.style.pointerEvents = 'all';
+  
+  // Cerrar la solapa del sobre
+  envelope.classList.remove('opening');
+  
+  // La carta vuelve a entrar en el sobre
+  setTimeout(() => {
+    letter.classList.add('returning');
+    letter.classList.remove('visible');
+  }, 100);
   
   setTimeout(() => {
-    // Completely hide letter
+    // Ocultar completamente la carta
     letter.style.display = 'none';
-    letter.classList.remove('visible');
-    letter.classList.remove('closing');
+    letter.classList.remove('returning');
     
-    // Close and flip envelope
-    envelope.classList.remove('opening');
-    envelope.classList.add('closing');
-    
+    // Voltear el sobre para mostrar el reverso
     setTimeout(() => {
-      // Show envelope back after flip completes
-      envelopeBack.classList.add('visible');
-    }, 1600);
-  }, 600);
+      envelope.classList.add('closing');
+      
+      setTimeout(() => {
+        // Mostrar el reverso del sobre después del volteo
+        envelopeBack.classList.add('visible');
+      }, 750);
+    }, 200);
+  }, 2600);
 }
 
 // Setup final form (envelope back)
@@ -332,27 +357,24 @@ async function sendEmail() {
   formDataToSend.append('_subject', `Nueva carta de ${formData.empresa} - Caltria`);
   formDataToSend.append('_template', 'table');
   formDataToSend.append('_captcha', 'false');
+  formDataToSend.append('_next', window.location.href);
   formDataToSend.append('Empresa', formData.empresa);
   formDataToSend.append('Industria', formData.industria);
   formDataToSend.append('Tamaño', formData.tamaño);
+  formDataToSend.append('Ubicación', formData.ubicacion);
   formDataToSend.append('Proceso', formData.proceso);
   formDataToSend.append('Situación', formData.situacion);
   formDataToSend.append('Problema', formData.problema);
   formDataToSend.append('Presupuesto', formData.presupuesto);
+  formDataToSend.append('Tipo de Reunión', formData.tipoReunion);
   
   // Optional fields
-  if (formData.website) {
-    formDataToSend.append('Página Web', formData.website);
-  }
-  if (formData.social) {
-    formDataToSend.append('Redes Sociales', formData.social);
-  }
   if (formData.additionalInfo) {
     formDataToSend.append('Información Adicional', formData.additionalInfo);
   }
   
   formDataToSend.append('Email', formData.email);
-  formDataToSend.append('Teléfono', formData.telefono);
+  formDataToSend.append('Teléfono', formData.telefono || 'No proporcionado');
   formDataToSend.append('Nombre', formData.nombre);
   
   const response = await fetch(formSubmitURL, {

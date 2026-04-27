@@ -1,0 +1,60 @@
+/* ─── ENHANCED SMOOTH SCROLL ─────────────────────────────────── */
+
+/* Smooth scrolling for all browsers */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+/* Webkit smooth scrolling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Firefox smooth scrolling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) rgba(255, 255, 255, 0.02);
+}
+
+/* Smooth momentum scrolling on iOS */
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent scroll jank */
+section {
+  will-change: transform;
+}
+
+/* Smooth transitions for scroll-triggered animations */
+.reveal {
+  will-change: opacity, transform;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

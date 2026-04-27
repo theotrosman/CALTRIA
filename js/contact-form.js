@@ -172,7 +172,7 @@ async function submitForm(e) {
 // Send email function
 async function sendEmail(data) {
   // Using FormSubmit.co (free service)
-  const formSubmitURL = 'https://formsubmit.co/theotrosman@gmail.com';
+  const formSubmitURL = 'https://formsubmit.co/caltriasupport@gmail.com';
   
   const emailBody = `
     <h2>Nuevo contacto desde Caltria</h2>

@@ -1,0 +1,418 @@
+/* ─── LETTER FORM EXPERIENCE ─────────────────────────────────── */
+
+.contact-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+/* Background with 8-bit city */
+.contact-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../8f444a91900373.5e3d63788609e.gif');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  filter: blur(1px);
+  z-index: 0;
+}
+
+.contact-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.85) 0%,
+    rgba(10, 10, 10, 0.92) 50%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.letter-scene {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-8);
+  perspective: 1200px;
+}
+
+/* ─── ENVELOPE ───────────────────────────────────────────────── */
+
+.envelope {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  height: 400px;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.envelope.opening {
+  transform: translateY(-20px) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.envelope__body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.5),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.envelope__flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(135deg, #323232 0%, #252525 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  transform-origin: top center;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.envelope.opening .envelope__flap {
+  transform: rotateX(-180deg);
+}
+
+/* ─── LETTER ─────────────────────────────────────────────────── */
+
+.letter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  width: 90%;
+  max-width: 650px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.letter.visible {
+  opacity: 1;
+  pointer-events: all;
+  transform: translate(-50%, -50%);
+}
+
+.letter.sending {
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+}
+
+.letter__paper {
+  background: #fafafa;
+  border-radius: 2px;
+  padding: var(--space-12) var(--space-10);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 8px 24px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.letter__paper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 31px,
+      rgba(0, 0, 0, 0.02) 31px,
+      rgba(0, 0, 0, 0.02) 32px
+    );
+  pointer-events: none;
+  border-radius: 2px;
+}
+
+.letter__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.letter__logo {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+}
+
+.letter__date {
+  font-size: var(--fs-xs);
+  color: #666;
+  font-weight: var(--fw-medium);
+}
+
+.letter__content {
+  color: #1a1a1a;
+  line-height: 2;
+}
+
+.letter__greeting {
+  font-size: var(--fs-base);
+  margin-bottom: var(--space-6);
+  font-weight: var(--fw-medium);
+}
+
+.letter__paragraph {
+  font-size: var(--fs-base);
+  margin-bottom: var(--space-6);
+  line-height: 2;
+}
+
+.letter__closing {
+  margin-top: var(--space-8);
+  font-size: var(--fs-base);
+  line-height: 2;
+}
+
+/* ─── INLINE INPUTS ──────────────────────────────────────────── */
+
+.letter__input-wrapper {
+  display: inline-block;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  transition: border-color 0.3s;
+}
+
+.letter__input-wrapper--wide {
+  min-width: 200px;
+}
+
+.letter__input-wrapper:focus-within {
+  border-bottom-color: var(--color-primary);
+}
+
+.letter__input,
+.letter__select {
+  display: inline-block;
+  border: none;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  color: #1a1a1a;
+  padding: 2px 4px;
+  outline: none;
+  min-width: 120px;
+  transition: color 0.3s;
+}
+
+.letter__input--wide {
+  min-width: 200px;
+}
+
+.letter__input::placeholder,
+.letter__select option[value=""] {
+  color: #999;
+  font-style: italic;
+}
+
+.letter__input:focus,
+.letter__select:focus {
+  color: var(--color-primary);
+}
+
+.letter__input.filled,
+.letter__select.filled {
+  color: #1a1a1a;
+  font-weight: var(--fw-medium);
+}
+
+.letter__select {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 10px;
+}
+
+.letter__select option {
+  background: #fff;
+  color: #1a1a1a;
+}
+
+/* ─── SEND BUTTON ────────────────────────────────────────────── */
+
+.letter__send-btn {
+  margin-top: var(--space-10);
+  padding: var(--space-3) var(--space-8);
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.letter__send-btn:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-2px);
+}
+
+.letter__send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ─── MAILBOX ────────────────────────────────────────────────── */
+
+.mailbox {
+  position: absolute;
+  bottom: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 250px;
+  opacity: 0;
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mailbox.visible {
+  bottom: 50px;
+  opacity: 1;
+}
+
+.mailbox__body {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 180px;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px 8px 4px 4px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.mailbox__door {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 80px;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: bottom center;
+}
+
+.mailbox.open .mailbox__door {
+  transform: translateX(-50%) rotateX(-90deg);
+}
+
+.mailbox__flag {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  width: 40px;
+  height: 20px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  transform-origin: left center;
+  transition: transform 0.4s;
+}
+
+.mailbox.flag-up .mailbox__flag {
+  transform: rotate(-45deg);
+}
+
+/* ─── SUCCESS MESSAGE ────────────────────────────────────────── */
+
+.letter-success {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s;
+}
+
+.letter-success.visible {
+  opacity: 1;
+}
+
+.letter-success__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.03em;
+}
+
+.letter-success__message {
+  font-size: var(--fs-base);
+  color: var(--color-text-muted);
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .letter-scene {
+    padding: var(--space-4);
+  }
+
+  .envelope {
+    height: 300px;
+  }
+
+  .letter {
+    width: 95%;
+  }
+
+  .letter__paper {
+    padding: var(--space-8) var(--space-6);
+  }
+
+  .letter__paragraph {
+    font-size: var(--fs-sm);
+  }
+
+  .letter__input,
+  .letter__select {
+    font-size: var(--fs-sm);
+    min-width: 100px;
+  }
+
+  .letter__input--wide {
+    min-width: 150px;
+  }
+}

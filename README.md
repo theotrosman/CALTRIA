@@ -1,130 +1,137 @@
-# Caltria - Automatización de Procesos
+# Caltria - Landing Page Premium
 
-Landing page profesional para Caltria, una empresa que automatiza procesos para otras empresas.
+Landing page moderna y premium para empresa de automatizaciones personalizadas. Diseño inspirado en Apple, Stripe y Vercel con estética limpia y profesional.
 
-## Características
+## 🎨 Características
 
-### Diseño Limpio y Profesional
-- Sin gradientes ni efectos glassmorphism
-- Fondo negro sólido (#0a0a0a)
-- Tipografía IBM Plex Sans
-- Line-height 1.6 para mejor legibilidad
-- Espaciado vertical consistente
+- **Diseño Premium**: Estética minimalista tipo Apple/Stripe/Vercel
+- **Fondo 8-bit Sutil**: GIF de ciudad al atardecer integrado elegantemente
+- **Animaciones Fluidas**: Microinteracciones y transiciones suaves
+- **Scroll Storytelling**: Revelación progresiva de secciones
+- **Experiencia de Carta**: Formulario innovador que simula escribir una carta física
+- **100% Responsive**: Optimizado para todos los dispositivos
+- **Performance**: Carga rápida y animaciones optimizadas
 
-### Copy Real y Directo
-- Sin palabras como "empower", "unleash", "revolutionize"
-- Sin emojis
-- Lenguaje natural y conversacional
-- Explicaciones concretas de servicios
+## 🚀 Tecnologías
 
-### Secciones
+- HTML5 semántico
+- CSS3 con variables personalizadas
+- JavaScript vanilla (sin dependencias)
+- Intersection Observer API para animaciones
+- FormSubmit para envío de formularios
 
-1. **Hero**: Propuesta de valor clara
-2. **Resultados**: 3 casos reales con números concretos
-3. **Servicios**: 6 servicios explicados de forma simple
-4. **Empresas**: Panel de empresas asociadas
-5. **Contacto**: Formulario de 5 pasos con ubicación
-6. **Footer**: Información de fundadores y contacto
+## 📁 Estructura
+
+```
+├── index.html              # Página principal
+├── css/
+│   ├── reset.css          # Reset de estilos
+│   ├── variables.css      # Variables CSS (colores, tipografía, espaciado)
+│   ├── layout.css         # Layout y componentes principales
+│   ├── animations.css     # Animaciones y transiciones
+│   └── letter-form.css    # Estilos de la experiencia de carta
+├── js/
+│   ├── scroll.js          # Scroll progress y reveal animations
+│   ├── animations.js      # Microinteracciones y efectos
+│   └── letter-form.js     # Lógica de la experiencia de carta
+└── 8f444a91900373.5e3d63788609e.gif  # Fondo 8-bit
+```
+
+## 🎯 Secciones
+
+1. **Hero**: Presentación principal con estadísticas clave
+2. **Casos de Éxito**: Resultados medibles de proyectos reales
+3. **Servicios**: 6 servicios principales numerados
+4. **Proceso**: 4 pasos del flujo de trabajo
+5. **Contacto**: Experiencia innovadora de carta física
+6. **Footer**: Información de contacto y fundadores
+
+## ✉️ Experiencia de Carta
+
+El formulario de contacto es una experiencia completamente innovadora:
+
+- **Sobre animado**: Se abre automáticamente al hacer scroll
+- **Carta interactiva**: Los campos están embebidos en el texto de una carta
+- **Inputs inline**: No hay formularios tradicionales, todo fluye naturalmente
+- **Animación de envío**: La carta se desliza dentro del sobre, va al buzón
+- **Feedback elegante**: Mensaje de éxito después de la animación completa
+
+### Flujo de la experiencia:
+
+1. Usuario llega a la sección de contacto
+2. El sobre se abre automáticamente
+3. La carta se desliza hacia afuera
+4. Usuario completa los campos inline
+5. Al enviar, la carta vuelve al sobre
+6. El sobre se cierra y aparece un buzón
+7. El sobre entra en el buzón
+8. Mensaje de éxito
+
+## 🎨 Paleta de Colores
+
+- **Background**: `#0a0a0a` (Negro profundo)
+- **Surface**: `#171717` (Gris oscuro)
+- **Primary**: `#ff006e` (Rosa vibrante)
+- **Text**: `#ffffff` (Blanco)
+- **Text Muted**: `#a1a1a1` (Gris medio)
+- **Paper**: `#fafafa` (Blanco papel)
+
+## ⚡ Animaciones
+
+- **Fade Up**: Aparición suave desde abajo
+- **Reveal on Scroll**: Elementos se revelan al hacer scroll
+- **Parallax**: Efecto parallax sutil en el hero
+- **Hover Effects**: Microinteracciones en cards y botones
+- **Progress Bar**: Barra de progreso del scroll
+- **Letter Animation**: Secuencia completa de envío de carta
+
+## 📱 Responsive
+
+- **Desktop**: 1200px+ (experiencia completa)
+- **Tablet**: 640px - 1199px (adaptado)
+- **Mobile**: <640px (optimizado para móvil)
+
+## 🔧 Configuración
 
 ### Formulario de Contacto
 
-**5 pasos:**
-1. Información de la empresa
-2. Qué quieren automatizar (no "qué servicios necesitan")
-3. Situación actual y timeline
-4. Presupuesto estimado
-5. Datos de contacto + ubicación (Argentina, barrios, etc.)
+El formulario usa FormSubmit.co. Para cambiar el email de destino:
 
-**Envío:** Los datos se envían directamente a `theotrosman@gmail.com` usando FormSubmit.co
+1. Abre `js/letter-form.js`
+2. Busca la línea: `const formSubmitURL = 'https://formsubmit.co/caltriasupport@gmail.com';`
+3. Reemplaza el email con el tuyo
 
-### Fundadores
+### Personalización de Colores
 
-- **Theo Trosman**: [LinkedIn](https://www.linkedin.com/in/theotrosman/)
-- **Sebastián Calviño**: [LinkedIn](https://www.linkedin.com/in/sebastián-calviño-99073b302/)
-
-## Estructura de Archivos
-
-```
-caltria/
-├── index.html                    # Página principal
-├── css/
-│   ├── reset.css                # Reset de estilos
-│   ├── variables.css            # Variables CSS
-│   ├── animations.css           # Animaciones básicas
-│   ├── layout-clean.css         # Estilos principales limpios
-│   └── contact-form-clean.css   # Estilos del formulario
-├── js/
-│   ├── scroll-clean.js          # Efectos de scroll
-│   └── contact-form-clean.js    # Lógica del formulario
-└── assets/                      # Carpeta para imágenes
-```
-
-## Cómo Usar
-
-1. Abrí `index.html` en tu navegador
-2. No necesita servidor, funciona directo
-3. El formulario envía emails automáticamente
-
-## Tipografía
-
-- **Fuente**: IBM Plex Sans (Google Fonts)
-- **Line-height**: 1.6 para texto de cuerpo
-- **Tamaños**: Escala consistente de 0.875rem a 4rem
-
-## Colores
+Edita `css/variables.css` para cambiar la paleta de colores:
 
 ```css
---color-bg:         #0a0a0a  /* Fondo negro */
---color-surface:    #1a1a1a  /* Tarjetas */
---color-primary:    #ff006e  /* Rosa */
---color-text:       #ffffff  /* Texto principal */
---color-text-muted: #a0a0a0  /* Texto secundario */
+--color-primary: #ff006e;  /* Color principal */
+--color-bg: #0a0a0a;       /* Fondo */
 ```
 
-## Formulario de Contacto
+## 🌐 Deploy
 
-El formulario usa **FormSubmit.co** (servicio gratuito):
-- Email destino: `theotrosman@gmail.com`
-- Sin backend necesario
-- Funciona desde el frontend
-- Incluye campo de ubicación
+### Netlify / Vercel
 
-### Primera vez usando FormSubmit
-
-1. Enviá un formulario de prueba
-2. Revisá el email de theotrosman@gmail.com
-3. Confirmá el email de FormSubmit (solo la primera vez)
-4. A partir de ahí, todos los formularios llegarán automáticamente
-
-## Responsive
-
-- Desktop: 1200px+ (experiencia completa)
-- Tablet: 768px - 1199px (adaptado)
-- Mobile: < 768px (optimizado)
-
-## Deploy
-
-### Netlify (Recomendado)
-```bash
-netlify deploy --prod
-```
-
-### Vercel
-```bash
-vercel --prod
-```
+1. Conecta tu repositorio
+2. Deploy automático (sin configuración adicional)
 
 ### GitHub Pages
-1. Subí el proyecto a GitHub
-2. Activá GitHub Pages en Settings
-3. Listo
 
-## Contacto
+1. Ve a Settings > Pages
+2. Selecciona la rama main
+3. Guarda y espera el deploy
 
-**Email**: theotrosman@gmail.com  
-**LinkedIn Theo**: https://www.linkedin.com/in/theotrosman/  
-**LinkedIn Sebastián**: https://www.linkedin.com/in/sebastián-calviño-99073b302/
+## 📄 Licencia
+
+Proyecto privado - Caltria 2024
+
+## 👥 Fundadores
+
+- [Theo Trosman](https://www.linkedin.com/in/theotrosman/)
+- [Sebastián Calviño](https://www.linkedin.com/in/sebastián-calviño-99073b302/)
 
 ---
 
-2024 Caltria
+**Contacto**: caltriasupport@gmail.com

@@ -331,9 +331,16 @@ section {
   font-weight: var(--fw-bold);
   line-height: var(--lh-tight);
   letter-spacing: -0.04em;
+  margin-top: var(--space-12);
   margin-bottom: var(--space-6);
   opacity: 0;
   animation: fadeUp var(--dur-slow) var(--ease-out) 0.4s forwards;
+  cursor: default;
+  user-select: none;
+}
+
+[data-scramble] {
+  transition: color 0.2s;
 }
 
 .hero__subtitle {
@@ -1124,6 +1131,22 @@ section {
     padding: var(--space-2);
   }
 
+  /* Hero mobile */
+  .hero {
+    padding-bottom: 100px;
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+    margin-top: var(--space-8);
+    letter-spacing: -0.03em;
+  }
+
+  .hero__subtitle {
+    font-size: var(--fs-sm);
+    margin-bottom: var(--space-8);
+  }
+
   .hero__actions {
     flex-direction: column;
     width: 100%;
@@ -1132,5 +1155,54 @@ section {
   .hero__actions .btn {
     width: 100%;
     justify-content: center;
+  }
+
+  .hero__stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    padding-top: var(--space-8);
+  }
+
+  .hero__stat-number {
+    font-size: var(--fs-xl);
+  }
+
+  .hero__stat-label {
+    font-size: 0.625rem;
+  }
+
+  /* Cards mobile */
+  .results__grid,
+  .services__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .result-card {
+    min-height: auto;
+  }
+
+  /* Process mobile */
+  .process__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  .process__step {
+    min-height: auto;
+    padding: var(--space-4);
+  }
+
+  .process__step-title {
+    font-size: var(--fs-base);
+    min-height: auto;
+  }
+
+  /* Section headers mobile */
+  .section-header {
+    margin-bottom: var(--space-10);
+  }
+
+  .section-header__title {
+    font-size: var(--fs-2xl);
   }
 }

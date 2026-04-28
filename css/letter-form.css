@@ -502,6 +502,17 @@
   cursor: not-allowed;
 }
 
+/* ─── FIELD ERROR MESSAGES ───────────────────────────────────── */
+
+.field-error {
+  display: block;
+  font-size: 0.75rem;
+  color: #ff4d6d;
+  margin-top: var(--space-1);
+  font-weight: var(--fw-medium);
+  animation: fadeUp 0.2s var(--ease-out);
+}
+
 /* ─── LETTER ─────────────────────────────────────────────────── */
 
 .letter {

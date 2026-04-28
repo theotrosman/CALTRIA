@@ -310,17 +310,67 @@ function setupFinalForm() {
     input.addEventListener('input', (e) => {
       const field = e.target.dataset.field;
       formData[field] = e.target.value;
-      
+      validateFinalField(e.target);
       checkFinalFormCompletion();
+    });
+
+    input.addEventListener('blur', (e) => {
+      validateFinalField(e.target, true);
     });
   });
 }
 
+// Validate a single final-form field
+function validateFinalField(input, showEmpty = false) {
+  const field = input.dataset.field;
+  const value = input.value.trim();
+  let error = '';
+
+  if (field === 'email') {
+    if (!value && showEmpty) {
+      error = 'El email es obligatorio';
+    } else if (value && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) {
+      error = 'Ingresá un email válido';
+    }
+  }
+
+  if (field === 'telefono' && value) {
+    // Acepta formatos: +54 11 1234-5678 / 1112345678 / +1 (555) 000-0000
+    if (!/^\+?[\d\s\-().]{7,20}$/.test(value)) {
+      error = 'Ingresá un teléfono válido';
+    }
+  }
+
+  if (field === 'nombre' && !value && showEmpty) {
+    error = 'El nombre es obligatorio';
+  }
+
+  // Show / hide error
+  let errorEl = input.parentElement.querySelector('.field-error');
+  if (error) {
+    input.style.borderColor = '#ff4d6d';
+    if (!errorEl) {
+      errorEl = document.createElement('span');
+      errorEl.className = 'field-error';
+      input.parentElement.appendChild(errorEl);
+    }
+    errorEl.textContent = error;
+  } else {
+    input.style.borderColor = '';
+    if (errorEl) errorEl.remove();
+  }
+}
+
 // Check if final form is complete
 function checkFinalFormCompletion() {
-  const requiredFinalFields = ['nombre', 'email'];
-  const isComplete = requiredFinalFields.every(field => formData[field] && formData[field].trim() !== '');
-  
+  const nombre = formData['nombre']?.trim() || '';
+  const email  = formData['email']?.trim()  || '';
+  const tel    = formData['telefono']?.trim() || '';
+
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+  const telValid   = !tel || /^\+?[\d\s\-().]{7,20}$/.test(tel);
+  const isComplete = nombre && emailValid && telValid;
+
   if (finalSendBtn) {
     finalSendBtn.disabled = !isComplete;
   }

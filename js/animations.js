@@ -77,6 +77,43 @@ function initCounters() {
   });
 }
 
+// ─── Hero Stats Counter Animation ──────────────────────────────
+
+function initHeroStats() {
+  const stats = document.querySelectorAll('.hero__stat-number[data-count]');
+  if (!stats.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting || entry.target.dataset.animated) return;
+      entry.target.dataset.animated = 'true';
+
+      const el = entry.target;
+      const target = parseInt(el.dataset.count, 10);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const duration = 1800;
+      const startTime = performance.now();
+
+      function easeOutExpo(t) {
+        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+      }
+
+      function tick(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const value = Math.round(easeOutExpo(progress) * target);
+        el.textContent = prefix + value + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.5 });
+
+  stats.forEach(el => observer.observe(el));
+}
+
 // ─── Initialize All Animations ──────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -84,4 +121,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initParallax();
   initCardHoverEffect();
   initCounters();
+  initHeroStats();
 });

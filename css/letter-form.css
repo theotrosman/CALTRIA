@@ -1068,7 +1068,7 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.8s;
@@ -1076,7 +1076,8 @@
   max-width: 600px;
   padding: var(--space-8);
   z-index: 100;
-  margin-top: 60px;
+  /* empuja la card por debajo del header de la sección */
+  margin-top: clamp(80px, 12vh, 140px);
 }
 
 .letter-success.visible {
@@ -1086,11 +1087,11 @@
 
 @keyframes successFadeIn {
   0% {
-    transform: translate(-50%, -50%) scale(0.95);
+    transform: translate(-50%, -35%) scale(0.95);
     opacity: 0;
   }
   100% {
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -40%) scale(1);
     opacity: 1;
   }
 }

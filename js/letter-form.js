@@ -359,6 +359,7 @@ async function sendEmail() {
   formDataToSend.append('_template', 'table');
   formDataToSend.append('_captcha', 'false');
   formDataToSend.append('_next', window.location.href);
+  formDataToSend.append('_autoresponse', `Hola ${formData.nombre || formData.empresa},\n\nRecibimos tu carta y ya estamos revisando tu caso.\n\nTe contactaremos en las próximas 24 horas con una propuesta inicial.\n\nSaludos,\nEl equipo de Caltria`);
   formDataToSend.append('Empresa', `${formData.tipo} ${formData.empresa}`);
   formDataToSend.append('Industria', formData.industria);
   formDataToSend.append('Tamaño', formData.tamaño);

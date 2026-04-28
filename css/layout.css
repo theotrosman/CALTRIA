@@ -309,7 +309,7 @@ section {
   color: var(--color-text-muted);
   margin-bottom: var(--space-8);
   opacity: 0;
-  animation: fadeUp var(--dur-slow) var(--ease-out) 0.2s forwards;
+  animation: fadeUp var(--dur-slow) var(--ease-out) 0s forwards;
 }
 
 .hero__badge-dot {
@@ -334,7 +334,7 @@ section {
   margin-top: var(--space-12);
   margin-bottom: var(--space-6);
   opacity: 0;
-  animation: fadeUp var(--dur-slow) var(--ease-out) 0.4s forwards;
+  animation: fadeUp var(--dur-slow) var(--ease-out) 0s forwards;
   cursor: default;
   user-select: none;
 }
@@ -350,7 +350,7 @@ section {
   margin: 0 auto var(--space-10);
   line-height: var(--lh-normal);
   opacity: 0;
-  animation: fadeUp var(--dur-slow) var(--ease-out) 0.6s forwards;
+  animation: fadeUp var(--dur-slow) var(--ease-out) 0.15s forwards;
 }
 
 .hero__actions {
@@ -361,7 +361,7 @@ section {
   flex-wrap: wrap;
   margin-bottom: var(--space-16);
   opacity: 0;
-  animation: fadeUp var(--dur-slow) var(--ease-out) 0.8s forwards;
+  animation: fadeUp var(--dur-slow) var(--ease-out) 0.25s forwards;
 }
 
 .hero__stats {
@@ -373,7 +373,7 @@ section {
   padding-top: var(--space-12);
   border-top: 1px solid var(--color-border);
   opacity: 0;
-  animation: fadeUp var(--dur-slow) var(--ease-out) 1s forwards;
+  animation: fadeUp var(--dur-slow) var(--ease-out) 0.4s forwards;
 }
 
 .hero__stat {

@@ -25,6 +25,7 @@ let currentStep = 1;
 
 // Form data
 const formData = {
+  tipo: '',
   empresa: '',
   industria: '',
   tamaño: '',
@@ -42,13 +43,13 @@ const formData = {
 
 // Step field mapping
 const stepFields = {
-  1: ['empresa', 'industria'],
+  1: ['tipo', 'empresa', 'industria'],
   2: ['tamaño', 'ubicacion'],
-  3: [], // Will be validated dynamically based on toggle
+  3: [],
   4: ['situacion'],
   5: ['problema'],
   6: ['presupuesto'],
-  7: ['tipoReunion'] // Meeting type is required
+  7: ['tipoReunion']
 };
 
 // Initialize
@@ -358,7 +359,7 @@ async function sendEmail() {
   formDataToSend.append('_template', 'table');
   formDataToSend.append('_captcha', 'false');
   formDataToSend.append('_next', window.location.href);
-  formDataToSend.append('Empresa', formData.empresa);
+  formDataToSend.append('Empresa', `${formData.tipo} ${formData.empresa}`);
   formDataToSend.append('Industria', formData.industria);
   formDataToSend.append('Tamaño', formData.tamaño);
   formDataToSend.append('Ubicación', formData.ubicacion);

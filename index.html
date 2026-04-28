@@ -61,7 +61,7 @@
         <div class="hero__badge" style="display:none;"></div>
         
         <h1 class="hero__title" data-scramble>
-          Automatizaciones personalizadas para tu comercio
+          Automatizaciones personalizadas para tu <span id="rotating-word"></span></span>
         </h1>
         
         <p class="hero__subtitle">
@@ -327,9 +327,15 @@
             <!-- Step 1: Company Name & Industry -->
             <div class="letter__step active" data-step="1">
               <p class="letter__paragraph">
-                Somos 
                 <span class="letter__input-wrapper">
-                  <input type="text" class="letter__input" id="companyName" placeholder="nombre de la empresa" data-field="empresa" />
+                  <select class="letter__select" id="whoAmI" data-field="tipo">
+                    <option value="">Soy/Somos</option>
+                    <option value="Soy">Soy</option>
+                    <option value="Somos">Somos</option>
+                  </select>
+                </span>
+                <span class="letter__input-wrapper">
+                  <input type="text" class="letter__input" id="companyName" placeholder="tu nombre o empresa" data-field="empresa" />
                 </span>
                 y trabajamos en el rubro 
                 <span class="letter__input-wrapper">

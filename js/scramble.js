@@ -63,7 +63,7 @@ function initRotatingWord() {
   }
 
   rotate();
-  setInterval(rotate, 2500);
+  setInterval(rotate, 2000);
 }
 
 // ─── Scramble on hover ─────────────────────────────────────────
